@@ -1,0 +1,7 @@
+<section class="sidebar">
+  <ul>
+    @for (option of menuOptions; track $index) {
+      <li [id]="option.id" [routerLink]="option.link" routerLinkActive="active">{{ option.label }}</li>
+    }
+  </ul>
+</section>

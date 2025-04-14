@@ -1,0 +1,9 @@
+@use '../../../styles.scss' as vars;
+
+:host {
+  background-color: vars.$primary-color;
+
+  h3 {
+    text-align: center;
+  }
+}

@@ -1,0 +1,24 @@
+@use '../../../styles.scss' as vars;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 1rem 0.5rem;
+      list-style: none;
+      border-bottom: 1px solid vars.$border-color;
+
+      &:hover {
+        cursor: pointer;
+        background-color: vars.$primary-color;
+      }
+    }
+  }
+}
