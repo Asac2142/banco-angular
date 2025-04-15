@@ -1,1 +1,23 @@
-<p>cuentas works!</p>
+<section class="container">
+  <h4>Cuentas</h4>
+
+  <app-search-new
+    buttonLabel="Nuevo"
+    (inputSearched)="onValueChanges($event)"
+    (btnClick)="onNewCta(modal)"
+    (clear)="onResetSearch()" />
+
+  <app-tabla
+    [columns]="columnas"
+    [dataSource]="(datasource$ | async) || []"
+    (rowSelected)="cuentaSeleccionada.set($event); showDialog.set(true); modal.showModal()" />
+</section>
+
+<app-modal #modal (closeDialog)="showDialog.set(false); modal.closeModal(); form.onReset(); cuentaSeleccionada.set(null)">
+  <app-nueva-cuenta
+    #form
+    [data]="cuentaSeleccionada()!"
+    [clientes]="(clientes$ | async) || []"
+    (eliminar)="onDelete($event); modal.closeModal(); cuentaSeleccionada.set(null)"
+    (submit)="onSaveCuenta($event); modal.closeModal(); cuentaSeleccionada.set(null)" />
+</app-modal>

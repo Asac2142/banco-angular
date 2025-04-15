@@ -1,4 +1,4 @@
-<section class="cliente-container">
+<section class="container">
   <h4>Clientes</h4>
 
   <app-search-new
@@ -7,12 +7,10 @@
     (btnClick)="onNuevoCliente(modal)"
     (clear)="onResetSearch()" />
 
-  <section>
-    <app-tabla
-      [columns]="columnas"
-      [dataSource]="(data$ | async) || []"
-      (rowSelected)="clienteSeleccionado.set($event); showDialog.set(true); modal.showModal()" />
-  </section>
+  <app-tabla
+    [columns]="columnas"
+    [dataSource]="(data$ | async) || []"
+    (rowSelected)="clienteSeleccionado.set($event); showDialog.set(true); modal.showModal()" />
 </section>
 
 <app-modal #modal (closeDialog)="showDialog.set(false); modal.closeModal(); form.onReset(); clienteSeleccionado.set(null)">

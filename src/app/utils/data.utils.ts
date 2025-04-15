@@ -1,4 +1,5 @@
 import { Cliente } from '../models/cliente/cliente.model';
+import { Cuenta } from '../models/cuenta/cuenta.model';
 
 export interface Menu {
   id: string;
@@ -30,4 +31,12 @@ export const clienteColumnas: DataSource<Cliente>[] = [
   { id: 'direccion', label: 'Direccion' },
   { id: 'telefono', label: 'Telefono' },
   { id: 'estado', label: 'Estado' }
+];
+
+export const cuentaColumnas: DataSource<Cuenta>[] = [
+  { id: 'numeroCuenta', label: 'Cuenta' },
+  { id: 'tipo', label: 'Tipo' },
+  { id: 'saldo', label: 'Saldo Inicial' },
+  { id: 'estado', label: 'Estado' },
+  { id: 'clienteNombre', label: 'Cliente' }
 ];

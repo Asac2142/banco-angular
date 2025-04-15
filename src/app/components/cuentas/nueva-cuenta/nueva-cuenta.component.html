@@ -1,0 +1,54 @@
+<form [formGroup]="form">
+  <div class="control">
+    <label for="cuentas">Tipo Cuenta</label>
+    <section class="radios" id="cuentas">
+      <label for="ahorros">Ahorros</label>
+      <input type="radio" name="tipoCuenta" id="ahorros" value="AHORROS" formControlName="tipoCuenta" />
+
+      <label for="corriente">Corriente</label>
+      <input type="radio" name="tipoCuenta" id="corriente" value="CORRIENTE" formControlName="tipoCuenta" />
+    </section>
+  </div>
+
+  <div class="control">
+    <label for="saldo">Saldo</label>
+    <div class="with-error">
+      <input type="number" name="saldo" id="saldo" formControlName="saldo" />
+      @if (form.controls.saldo.touched && form.controls.saldo.invalid) {
+        <span class="error">Saldo es incorrecto (Minimo: $100.00)</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="numeroCta">Numero Cuenta</label>
+    <p id="numeroCta">{{ form.controls.numeroCta.value }}</p>
+  </div>
+
+  <div class="control">
+    <label for="clientes">Cliente</label>
+    <div class="with-error">
+      <select name="clientes" id="clientes" formControlName="clienteId" (change)="onCuentaSelected()">
+        <option value="">--Elije un cliente--</option>
+        @for (cliente of clientes(); track $index) {
+          <option [value]="cliente.id">{{ cliente.nombre }}</option>
+        }
+      </select>
+      @if (form.controls.clienteId.touched && form.controls.clienteId.invalid) {
+        <span class="error">Cliente es mandatorio</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="nombre">Nombre</label>
+    <p id="nombre">{{ form.controls.clienteNombre.value }}</p>
+  </div>
+
+  <section class="action">
+    <button type="button" (click)="onSave()">Guardar</button>
+    @if (!!data()?.cuentaId) {
+      <button type="button" (click)="eliminar.emit(data()?.cuentaId!)">Delete</button>
+    }
+  </section>
+</form>
