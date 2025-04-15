@@ -1,0 +1,78 @@
+<form [formGroup]="form">
+  <div class="control">
+    <label for="nombre">Nombre</label>
+    <div class="with-error">
+      <input type="text" name="nombre" id="nombre" formControlName="nombre" />
+      @if (form.controls.nombre.touched && form.controls.nombre.invalid) {
+        <span class="error">Nombre invalido</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="id">Identificacion</label>
+    <div class="with-error">
+      <input type="text" name="id" id="id" formControlName="identificacion" />
+      @if (form.controls.identificacion.touched && form.controls.identificacion.invalid) {
+        <span class="error">Identificacion es invalida</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="edad">Edad</label>
+    <div class="with-error">
+      <input type="number" name="edad" id="edad" formControlName="edad" />
+      @if (form.controls.edad.touched && form.controls.edad.invalid) {
+        <span class="error">Edad es invalida</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="genero">Genero</label>
+    <section class="radios" id="genero">
+      <label for="masculino">Masculino</label>
+      <input type="radio" name="genero" id="masculino" value="MASCULINO" formControlName="genero" />
+      <label for="femenino">Femenino</label>
+      <input type="radio" name="genero" id="femenino" value="FEMENINO" formControlName="genero" />
+    </section>
+  </div>
+
+  <div class="control">
+    <label for="telefono">Telefono</label>
+    <div class="with-error">
+      <input type="tel" name="telefono" id="telefono" formControlName="telefono" />
+      @if (form.controls.telefono.touched && form.controls.telefono.invalid) {
+        <span class="error">Telefono es invalido</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="password">Password</label>
+    <div class="with-error">
+      <input type="password" name="password" id="password" formControlName="password" />
+      @if (form.controls.password.touched && form.controls.password.invalid) {
+        <span class="error">Password invalido</span>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="direccion">Direccion</label>
+    <div class="with-error">
+      <input type="text" name="direccion" id="direccion" formControlName="direccion" />
+      @if (form.controls.direccion.touched && form.controls.direccion.invalid) {
+        <span class="error">Direccion es mandatorio</span>
+      }
+    </div>
+  </div>
+
+  <section class="action">
+    <button type="button" (click)="onSave()">Guardar</button>
+    @if (!!data()?.id) {
+      <button type="button" (click)="eliminar.emit(data()?.id!)">Delete</button>
+    }
+  </section>
+</form>

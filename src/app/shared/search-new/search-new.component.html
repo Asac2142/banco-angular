@@ -1,0 +1,10 @@
+<section class="top">
+  <div class="input-search">
+    <input type="text" name="input-1" id="input-1" [formControl]="searchField" />
+    @if (searchField.value) {
+      <i (click)="onClear()">❌</i>
+    }
+  </div>
+
+  <button type="button" (click)="btnClick.emit()">{{ buttonLabel() }}</button>
+</section>

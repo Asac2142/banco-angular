@@ -1,1 +1,24 @@
-<p>clientes works!</p>
+<section class="cliente-container">
+  <h4>Clientes</h4>
+
+  <app-search-new
+    buttonLabel="Nuevo"
+    (inputSearched)="onValueChanges($event)"
+    (btnClick)="onNuevoCliente(modal)"
+    (clear)="onResetSearch()" />
+
+  <section>
+    <app-tabla
+      [columns]="columnas"
+      [dataSource]="(data$ | async) || []"
+      (rowSelected)="clienteSeleccionado.set($event); showDialog.set(true); modal.showModal()" />
+  </section>
+</section>
+
+<app-modal #modal (closeDialog)="showDialog.set(false); modal.closeModal(); form.onReset(); clienteSeleccionado.set(null)">
+  <app-nuevo-cliente
+    #form
+    [data]="clienteSeleccionado()!"
+    (eliminar)="onDelete($event); modal.closeModal(); clienteSeleccionado.set(null)"
+    (submit)="onSaveCliente($event); modal.closeModal(); clienteSeleccionado.set(null)" />
+</app-modal>

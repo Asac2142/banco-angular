@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      @for (column of columns(); track $index) {
+        <th>{{ column.label }}</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (data of dataSource(); track $index) {
+      <tr (click)="rowSelected.emit(data)">
+        @for (column of columns(); track $index) {
+          <td>{{ data[column.id] }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

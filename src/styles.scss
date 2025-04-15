@@ -10,8 +10,62 @@ body {
 }
 
 $primary-color: #ffdd00;
+$white: #fff;
+$secondary-color: #0f265c;
 $border-color: #ccc;
+$black: #000;
+$danger: red;
+
+label,
+p {
+  margin: 0;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid $border-color;
+  border-radius: 0.3rem;
+  outline: $primary-color;
+}
+
+button {
+  padding: 0.5rem;
+  background-color: $secondary-color;
+  color: #fff;
+  outline: none;
+  border: none;
+  min-width: 8rem;
+  border-radius: 0.3rem;
+  padding: 1rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $primary-color;
+    color: $black;
+  }
+}
 
 .active {
   background-color: $primary-color;
+}
+
+.control {
+  display: grid;
+  grid-template-columns: 30% auto;
+  gap: 1rem;
+
+  .with-error {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .error {
+      color: $danger;
+      font-size: 12px;
+    }
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid $danger;
 }
