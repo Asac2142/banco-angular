@@ -6,8 +6,11 @@
 
   @let datos = dataSource$ | async;
   @if (datos?.length) {
-    <button type="button" (click)="asPDF(tabla.getTablaHTMLElement())">PDF</button>
-    <button type="button" (click)="toJSON()">JSON</button>
+    <section class="actions">
+      <button type="button" (click)="asPDF(tabla.getTablaHTMLElement())">PDF</button>
+      <button type="button" (click)="toJSON(datos!)">JSON</button>
+    </section>
+
     <app-tabla #tabla [columns]="columnas" [dataSource]="datos!" />
   }
 </section>

@@ -10,7 +10,9 @@ import { ReporteValues } from '../../models/reportes/reporte.model';
 import { Movimiento } from '../../models/movimientos/movimiento.model';
 import { MovimientosService } from '../../services/movimientos.service';
 import { reporteColumnas } from '../../utils/data.utils';
+
 import { jsPDF } from 'jspdf';
+import { saveAs } from 'file-saver';
 import autoTable from 'jspdf-autotable';
 
 @Component({
@@ -40,16 +42,21 @@ export class ReportesComponent implements OnInit {
 
   asPDF(tabla: HTMLTableElement): void {
     const doc = new jsPDF();
+    const filename = `movimientos-${new Date().getMilliseconds()}.pdf`;
 
     autoTable(doc, {
       html: tabla,
       theme: 'grid',
-      headStyles: { fillColor: [255, 221, 0] },
+      headStyles: { fillColor: [255, 221, 0], textColor: [0, 0, 0] },
       margin: { top: 10 }
     });
 
-    doc.save('movimientos.pdf');
+    doc.save(filename);
   }
 
-  toJSON(): void {}
+  toJSON(datos: Movimiento[]): void {
+    const asJSON = JSON.stringify(datos);
+    const blob = new Blob([asJSON], { type: 'application/json' });
+    saveAs(blob);
+  }
 }
