@@ -45,7 +45,7 @@ export const cuentaColumnas: DataSource<Cuenta>[] = [
 export const movimientoColumnas: DataSource<Movimiento>[] = [
   { id: 'numeroCuenta', label: 'Cuenta' },
   { id: 'cuentaTipo', label: 'Tipo' },
-  { id: 'saldo', label: 'Saldo' },
+  { id: 'saldo', label: 'Saldo Inicial' },
   { id: 'estado', label: 'Estado' },
   { id: 'monto', label: 'Monto' },
   { id: 'tipoMovimiento', label: 'Tipo movimiento' }
