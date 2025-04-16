@@ -53,7 +53,7 @@ export class ClientesComponent implements OnInit, OnDestroy {
   onSaveCliente(data: ClienteValues): void {
     this.showDialog.set(false);
 
-    if (data.id) {
+    if (data.id !== null) {
       this._clienteService.update(data);
     } else {
       this._clienteService.save(data);
