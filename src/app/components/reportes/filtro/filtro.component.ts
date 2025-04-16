@@ -8,14 +8,13 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
 
 import { ReporteForm, ReporteValues } from '../../../models/reportes/reporte.model';
 import { Cliente } from '../../../models/cliente/cliente.model';
 
 @Component({
   selector: 'app-filtro',
-  imports: [ReactiveFormsModule, JsonPipe],
+  imports: [ReactiveFormsModule],
   templateUrl: './filtro.component.html',
   styleUrl: './filtro.component.scss'
 })
