@@ -1,0 +1,48 @@
+<section class="filtro">
+  <form [formGroup]="form">
+    <div class="control">
+      <label for="cliente">Cliente</label>
+      <div class="with-error">
+        <select name="cliente" id="cliente" formControlName="clienteId">
+          <option value="">--Elije un cliente--</option>
+          @for (cliente of clientes(); track $index) {
+            <option [value]="cliente.id">{{ cliente.nombre }}</option>
+          }
+        </select>
+        @if (form.controls.clienteId.touched && form.controls.clienteId.invalid) {
+          <span class="error">Cliente es mandatorio</span>
+        }
+      </div>
+    </div>
+
+    <section class="fechas">
+      <div class="control">
+        <label for="desde">Desde</label>
+        <div class="with-error">
+          <input type="date" name="desde" id="desde" formControlName="desde" />
+          @if (form.controls.desde.touched && form.controls.desde.hasError('required')) {
+            <span class="error">Fecha desde es mandatorio</span>
+          }
+          @if (form.controls.desde.touched && form.controls.desde.hasError('desdeError')) {
+            <span class="error">Fecha desde tiene que ser menor o igual a hasta</span>
+          }
+        </div>
+      </div>
+
+      <div class="control">
+        <label for="hasta">Hasta</label>
+        <div class="with-error">
+          <input type="date" name="hasta" id="hasta" formControlName="hasta" />
+          @if (form.controls.hasta.touched && form.controls.hasta.hasError('required')) {
+            <span class="error">Fecha hasta es mandatorio</span>
+          }
+          @if (form.controls.hasta.touched && form.controls.hasta.hasError('hastaError')) {
+            <span class="error">Fecha hasta tiene que ser mayor o igual a desde</span>
+          }
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <button type="button" (click)="onSubmit()">Ok</button>
+</section>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { BehaviorSubject, catchError, Observable, of, take, withLatestFrom } from 'rxjs';
+
 import {
   Movimiento,
   MovimientoPost,
@@ -12,6 +12,7 @@ import {
 import { ErrorResponse } from '../utils/data.utils';
 import { CuentaService } from './cuenta.service';
 import { Cuenta } from '../models/cuenta/cuenta.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,16 @@ export class MovimientosService {
   private url = `${this.apiURL}/movimientos`;
   private _movimientos$ = new BehaviorSubject<Movimiento[]>([]);
 
-  fetchMovimientosByFechas(desde: string, hasta: string, clienteId: number): void {}
+  getMovimientosByFechas(desde: string, hasta: string, clienteId: number): Observable<Movimiento[]> {
+    const endpoint = `${this.url}/cliente/${clienteId}/movimientos?desde=${desde}&hasta=${hasta}`;
+
+    return this._http.get<Movimiento[]>(endpoint).pipe(
+      catchError((err: ErrorResponse) => {
+        alert(`Error al obtener datos filtrados: ${err.message} ${err.error}`);
+        return of([]);
+      })
+    );
+  }
 
   fetchMovimientosByCuentaId(cuentaId: string): void {
     const endpoint = `${this.url}/${cuentaId}`;

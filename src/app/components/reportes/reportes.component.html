@@ -1,1 +1,11 @@
-<p>reportes works!</p>
+<section class="container">
+  <h4>Reporte</h4>
+
+  @let clientes = clientes$ | async;
+  <app-filtro [clientes]="clientes || []" (submit)="onFilter($event)" />
+
+  @let datos = dataSource$ | async;
+  @if (datos?.length) {
+    <app-tabla [columns]="columnas" [dataSource]="datos!" />
+  }
+</section>

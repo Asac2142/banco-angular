@@ -50,3 +50,14 @@ export const movimientoColumnas: DataSource<Movimiento>[] = [
   { id: 'monto', label: 'Monto' },
   { id: 'tipoMovimiento', label: 'Tipo movimiento' }
 ];
+
+export const reporteColumnas: DataSource<Movimiento>[] = [
+  { id: 'fecha', label: 'Fecha' },
+  { id: 'clienteNombre', label: 'Cliente' },
+  { id: 'numeroCuenta', label: 'Cuenta' },
+  { id: 'cuentaTipo', label: 'Tipo' },
+  { id: 'saldo', label: 'Saldo Inicial' },
+  { id: 'estado', label: 'Estado' },
+  { id: 'monto', label: 'Movimiento' },
+  { id: 'saldoDisponible', label: 'Saldo Disponible' }
+];
