@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   styleUrl: './search-new.component.scss'
 })
 export class SearchNewComponent implements OnInit {
+  showSearch = input<boolean>(true);
   buttonLabel = input.required<string>();
   inputSearched = output<Observable<string | null>>();
   btnClick = output<void>();

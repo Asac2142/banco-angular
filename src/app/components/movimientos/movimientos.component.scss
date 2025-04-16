@@ -1,0 +1,10 @@
+.cuentas {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  i:hover {
+    cursor: pointer;
+  }
+}

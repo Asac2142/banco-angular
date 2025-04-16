@@ -116,9 +116,8 @@ export class CuentaService {
         withLatestFrom(this._cuenta$),
         catchError((err: ErrorResponse) => {
           alert(`Error al eliminar cuenta: ${err.message} ${err.error}`);
-          const noCta = {} as Cuenta;
           const emptyArr = [] as Cuenta[];
-          const res: Observable<[Cuenta, Cuenta[]]> = of([noCta, emptyArr]);
+          const res: Observable<[undefined, Cuenta[]]> = of([undefined, emptyArr]);
           return res;
         })
       )

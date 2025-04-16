@@ -1,1 +1,33 @@
-<p>movimientos works!</p>
+<section class="container">
+  <h4>Movimientos</h4>
+
+  <app-search-new buttonLabel="Nuevo" [showSearch]="false" (btnClick)="onMovimiento(modal)" (clear)="onResetSearch()">
+    <section class="cuentas">
+      <select #select name="cuentaId" id="cuentaId" (change)="onCuenta($event)">
+        <option value="">--Elije una cuenta--</option>
+        @let cuentas = cuentas$ | async;
+        @for (cuenta of cuentas; track $index) {
+          <option [value]="cuenta.cuentaId">{{ cuenta.numeroCuenta }}</option>
+        }
+      </select>
+
+      @if (seleccionada()) {
+        <i (click)="onClearCuenta(select)">x</i>
+      }
+    </section>
+  </app-search-new>
+
+  <app-tabla
+    [columns]="columnas"
+    [dataSource]="(movimientos$ | async) || []"
+    (rowSelected)="movSeleccionado.set($event); showDialog.set(true); modal.showModal()" />
+</section>
+
+<app-modal #modal (closeDialog)="showDialog.set(false); modal.closeModal(); form.onReset(); movSeleccionado.set(null)">
+  <app-transaccion
+    #form
+    [data]="movSeleccionado()!"
+    [cuentas]="(cuentas$ | async) || []"
+    (eliminar)="onDelete($event); modal.closeModal(); movSeleccionado.set(null)"
+    (submit)="onSaveMovimiento($event); modal.closeModal(); movSeleccionado.set(null)" />
+</app-modal>
