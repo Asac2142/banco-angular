@@ -9,10 +9,10 @@ describe('NuevaCuentaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NuevaCuentaComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NuevaCuentaComponent);
+    fixture.componentRef.setInput('clientes', []);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

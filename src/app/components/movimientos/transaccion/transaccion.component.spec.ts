@@ -9,10 +9,10 @@ describe('TransaccionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TransaccionComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TransaccionComponent);
+    fixture.componentRef.setInput('cuentas', []);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

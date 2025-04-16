@@ -9,10 +9,11 @@ describe('TablaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TablaComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TablaComponent);
+    fixture.componentRef.setInput('columns', []);
+    fixture.componentRef.setInput('dataSource', []);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

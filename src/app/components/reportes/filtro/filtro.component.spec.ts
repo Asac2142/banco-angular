@@ -9,10 +9,10 @@ describe('FiltroComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FiltroComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FiltroComponent);
+    fixture.componentRef.setInput('clientes', []);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

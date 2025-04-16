@@ -9,10 +9,11 @@ describe('SearchNewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SearchNewComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchNewComponent);
+    fixture.componentRef.setInput('showSearch', true);
+    fixture.componentRef.setInput('buttonLabel', 'New');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
