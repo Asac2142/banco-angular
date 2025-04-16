@@ -10,6 +10,8 @@ import { ReporteValues } from '../../models/reportes/reporte.model';
 import { Movimiento } from '../../models/movimientos/movimiento.model';
 import { MovimientosService } from '../../services/movimientos.service';
 import { reporteColumnas } from '../../utils/data.utils';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-reportes',
@@ -35,4 +37,19 @@ export class ReportesComponent implements OnInit {
     const id = clienteId as number;
     this.dataSource$ = this._movimientoService.getMovimientosByFechas(d, h, id);
   }
+
+  asPDF(tabla: HTMLTableElement): void {
+    const doc = new jsPDF();
+
+    autoTable(doc, {
+      html: tabla,
+      theme: 'grid',
+      headStyles: { fillColor: [255, 221, 0] },
+      margin: { top: 10 }
+    });
+
+    doc.save('movimientos.pdf');
+  }
+
+  toJSON(): void {}
 }

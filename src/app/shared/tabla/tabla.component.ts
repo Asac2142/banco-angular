@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ElementRef, input, output, viewChild } from '@angular/core';
 import { DataSource } from '../../utils/data.utils';
 
 @Component({
@@ -10,4 +10,9 @@ export class TablaComponent {
   columns = input.required<DataSource<any>[]>();
   dataSource = input.required<any[]>();
   rowSelected = output<any>();
+  tabla = viewChild<ElementRef>('tabla');
+
+  getTablaHTMLElement(): HTMLTableElement {
+    return this.tabla()?.nativeElement;
+  }
 }
